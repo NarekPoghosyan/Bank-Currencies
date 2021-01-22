@@ -1,0 +1,107 @@
+$display: flex;
+$justify-content : center;
+$align-items: center;
+
+@mixin div($a, $b, $c, $w, $h) {
+    display: $a;
+    justify-content: $b;
+    align-items: $c;
+    width: $w;
+    height: $h
+}
+
+    .title_top {
+        @include div(flex, flex-start, center, 100%, 20%);
+        border-bottom: 1px solid lightgray;
+
+        .title_bank {
+            @include div(flex, flex-start, center, 28%, 100%);
+
+            .number_of_banks {
+                border-right: 1px solid lightgray;
+                width: 20%;
+                height: 100%;
+            }
+
+        }
+
+        .bank {
+            @include div(flex, center, center, 80%, 100%);
+            border-right: 1px solid lightgray;
+        }
+
+        .branch {
+            @include div(flex, center, center, 14%, 100%);
+            border-right: 1px solid lightgray;
+        }
+
+        .date {
+            @include div(flex, center, center, 14%, 100%);
+            border-right: 1px solid lightgray;
+        }
+
+        .usd_block {
+            height: 100%;
+            width: 22%;
+            border-right: 1px solid lightgray;
+            text-align: center;
+
+            .usd {
+                @include div(flex, center, center, 100%, 50%);
+
+                .usa_flag {
+                    margin-left: 5px;
+                    width: 24px;
+                    height: 24px;
+                    background-image: url('../../../Icons/usa_flag.png')
+                }
+
+            }
+
+            .usa_div {
+                @include div(flex, space-around, center, 100%, 50%);
+                border-top: 1px solid lightgray;
+            }
+
+            div {
+                @include div(flex, center, center, 50%, 100%);
+            }
+
+            .usd_arq {
+                border-right: 1px solid lightgray;
+            }
+
+        }
+
+        .eur_block {
+            height: 100%;
+            width: 22%;
+
+            .eur {
+                @include div(flex, center, center, 100%, 50%);
+
+                .europe_flag {
+                    margin-left: 5px;
+                    width: 24px;
+                    height: 24px;
+                    background-image: url('../../../Icons/iconfinder_European\ Union_15858.png')
+                }
+
+            }
+
+            .eur_div {
+                @include div(flex, space-around, center, 100%, 50%);
+                border-top: 1px solid lightgray;
+                
+                div {
+                    @include div(flex, center, center, 50%, 100%);
+                }
+
+                .eur_arq {
+                    border-right: 1px solid lightgray;
+                }
+
+            }
+        }
+
+    }

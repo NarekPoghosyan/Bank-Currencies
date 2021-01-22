@@ -1,0 +1,58 @@
+@mixin Button($w, $h, $b, $o, $c, $bc, $bi) {
+    width: $w;
+    height: $h;
+    border: $b;
+    outline: $o;
+    cursor: $c;
+    background-color: $bc;
+    background-image: $bi;
+}
+
+@mixin divFlex($w, $h, $d, $jc, $ai) {
+    width: $w;
+    height: $h;
+    display: $d;
+    justify-content: $jc;
+    align-items: $ai;
+}
+
+.top {
+    @include divFlex(100%, 15%, flex, center, none);
+
+    .navbar {
+        @include divFlex(800px, 80px, flex, space-around, center);
+        border-bottom: 1px solid lightgray;
+
+        &:hover {
+            transition: 0.3s linear;
+            -webkit-box-shadow: 0 4px 2px -3px rgb(0, 68, 255);
+            box-shadow: 0 4px 2px -3px rgb(0, 68, 255);
+            }
+
+            .logo {
+                width: 70px;
+                height: 70px;
+                background-image: url('../Icons/logo.svg');
+                background-repeat: no-repeat;
+            }
+
+        .langs {
+            @include divFlex(90px, 50px, flex, space-around, center);
+
+            .lang_arm {
+                @include Button(24px, 24px, none, none, pointer, white, url('../Icons//arm_flag.png'))
+            }
+
+            .lang_ru {
+                @include Button(24px, 24px, none, none, pointer, white, url('../Icons/ru_flag.png'))
+            }
+
+            .lang_eng {
+                @include Button(24px, 24px, none, none, pointer, white, url('../Icons//uk_flag.png'))
+            }
+
+        }
+
+    }
+
+}

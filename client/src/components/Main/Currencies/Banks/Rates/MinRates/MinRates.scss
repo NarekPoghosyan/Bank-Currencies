@@ -1,0 +1,78 @@
+$display: flex;
+$justify-content : center;
+$align-items: center;
+
+@mixin div($a, $b, $c, $w, $h) {
+    display: $a;
+    justify-content: $b;
+    align-items: $c;
+    width: $w;
+    height: $h
+}
+
+    .rates {
+        @include div(flex, flex-start, center, 100%, 20%);
+        border-top: 1px solid lightgray;
+
+        .minimum {
+            @include div(flex, flex-start, center, 54%, 100%);
+            padding-left: 20px;
+            border-right: 1px solid lightgray;
+        }
+
+        .min_a_usd {
+            @include div(flex, center, center, 11%, 100%);
+            border-right: 1px solid lightgray;
+        }
+
+        .min_v_usd {
+            @include div(flex, center, center, 11%, 100%);
+            border-right: 1px solid lightgray;
+        }
+
+        .min_a_eur {
+            @include div(flex, center, center, 11%, 100%);
+            border-right: 1px solid lightgray;
+
+            .amd {
+                @include div(flex, center, center, 100%, 50%);
+            }
+
+            .amd_div {
+                @include div(flex, space-around, center, 100%, 50%);
+                border-top: 1px solid lightgray;
+            }
+
+            div {
+                @include div(flex, center, center, 50%, 100%);
+            }
+
+            .amd_arq {
+                border-right: 1px solid lightgray;
+            }
+
+        }
+
+        .min_v_eur {
+            @include div(flex, center, center, 11%, 100%);
+            border-right: 1px solid lightgray;
+
+            .eur {
+                @include div(flex, center, center, 100%, 50%);
+            }
+
+            .eur_div {
+                @include div(flex, space-around, center, 100%, 50%);
+                border-top: 1px solid lightgray;
+                
+                div {
+                    @include div(flex, center, center, 50%, 100%);
+                }
+
+                .eur_arq {
+                    border-right: 1px solid lightgray;
+                }
+
+            }
+        }
+}

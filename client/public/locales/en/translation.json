@@ -1,0 +1,31 @@
+{
+    "Title": {
+        "1": "BANK CURRENCIES"
+    },
+    "Bank": {
+        "1": "Bank",
+        "2": "Branch",
+        "3": "Date",
+        "4": "Buy",
+        "5": "sell"
+    },
+    "InecoBank": {
+        "1": "INECO",
+        "2": "Tumanyan 37",
+        "3": "1"
+    },
+    "ConverseBank": {
+        "1": "CONVERSE",
+        "2": "Komitas 49",
+        "3": "2"
+    },
+    "Rates": {
+        "1": "Minimum",
+        "2": "Maximum"
+    },
+    "Converter": {
+        "1": "Enter Money",
+        "2": "The amount received",
+        "3": "Storage"
+    }
+}

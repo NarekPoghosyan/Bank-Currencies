@@ -1,0 +1,22 @@
+@mixin widHei($w, $h) {
+    width: $w;
+    height: $h;
+}
+
+.middle {
+    @include widHei(100%, 64%);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    .banks {
+        @include widHei(810px, 300px);
+        border: 1px solid gray;
+
+        &:hover {
+            transition: 0.3s linear;
+            -webkit-box-shadow: 0 0 10px rgb(0, 68, 255);
+            box-shadow: 0 0 10px rgb(0, 68, 255);
+            }
+    }
+}
