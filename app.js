@@ -24,7 +24,7 @@ app.get('/currencies', (req, res) => {
 async function startDatabase() {
     try {
 
-        await mongoose.connect(process.env.mongoUri, {
+        await mongoose.connect(process.env.MONGODB_URI || process.env.mongoUri, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true
@@ -38,5 +38,13 @@ async function startDatabase() {
 
 startDatabase()
 promptUser()
+
+mongoose.connection.on('connected', () => {
+    console.log('Mongoose is connected!!!')
+})
+
+if(process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'))
+}
 
 app.listen(PORT, () => console.log(`App has been started on port ${PORT}...`))

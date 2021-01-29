@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import './Converter.scss'
+import { get } from 'mongoose'
 
 function Converter({ amd, eur, usd }) {
     const { t } = useTranslation()
@@ -14,77 +15,77 @@ function Converter({ amd, eur, usd }) {
     let sum;
     let storage_money;
 
-    if (typeof (getFirstInputValue))
+    function bankConvert(percent) {
+        switch(getEnterMoney) {
+            case 'AMD': 
+                calcForAmd(getReceivedMoney, percent)
+                break
+            case 'USD':
+                calcForUsd(getReceivedMoney, percent)
+                break
+            case 'EUR':
+                calcForEur(getReceivedMoney, percent)
+                break
+        }
+        return
+    }
+
+    function calcForAmd(getReceivedMoney, num) {
+        switch(getReceivedMoney) {
+            case 'USD':
+                sum = (getFirstInputValue / one_dollar)
+                storage_money = num + 3
+                break
+            case 'EUR':
+                sum = getFirstInputValue / amd
+                storage_money = num + 4
+                break
+            default:
+                sum = Number(getFirstInputValue)
+                storage_money = 0
+        }
+        return
+    }
+
+    function calcForUsd(getReceivedMoney, num) {
+        switch(getReceivedMoney) {
+            case 'AMD':
+                sum = one_dollar * getFirstInputValue
+                storage_money = num + 3
+                break
+            case 'EUR':
+                sum = getFirstInputValue * one_dollar / amd
+                storage_money = num + 5
+                break
+            default:
+                sum = Number(getFirstInputValue)
+                storage_money = 0
+        }
+        return
+    }
+
+    function calcForEur(getReceivedMoney, num) {
+        switch(getReceivedMoney) {
+            case 'AMD':
+                sum = amd * getFirstInputValue
+                storage_money = num + 4
+                break
+            case 'USD':
+                sum = amd / one_dollar * getFirstInputValue
+                storage_money = num + 5
+                break
+            default:
+                sum = Number(getFirstInputValue)
+                storage_money = 0
+        }
+        return
+    }
 
         if (bank === 'INECO') {
-            if (getEnterMoney === 'AMD' && getReceivedMoney === 'USD') {
-                sum = (getFirstInputValue / one_dollar)
-                storage_money = 3
-            } else if (getEnterMoney === 'AMD' && getReceivedMoney === 'EUR') {
-                sum = getFirstInputValue / amd
-                storage_money = 4
-            } else if (getEnterMoney === 'AMD' && getReceivedMoney === 'AMD') {
-                sum = Number(getFirstInputValue)
-                storage_money = 0
-            }
-
-            if (getEnterMoney === 'USD' && getReceivedMoney === 'AMD') {
-                sum = one_dollar * getFirstInputValue
-                storage_money = 3
-            } else if (getEnterMoney === 'USD' && getReceivedMoney === 'EUR') {
-                sum = getFirstInputValue * one_dollar / amd
-                storage_money = 5
-            } else if (getEnterMoney === 'USD' && getReceivedMoney === 'USD') {
-                sum = Number(getFirstInputValue)
-                storage_money = 0
-            }
-
-            if (getEnterMoney === 'EUR' && getReceivedMoney === 'AMD') {
-                sum = amd * getFirstInputValue
-                storage_money = 4
-            } else if (getEnterMoney === 'EUR' && getReceivedMoney === 'USD') {
-                sum = amd / one_dollar * getFirstInputValue
-                storage_money = 5
-            } else if (getEnterMoney === 'EUR' && getReceivedMoney === 'EUR') {
-                sum = Number(getFirstInputValue)
-                storage_money = 0
-            }
+            bankConvert(0)
+        } else {
+            bankConvert(1)
         }
-
-    if (bank === 'CONVERSE') {
-        if (getEnterMoney === 'AMD' && getReceivedMoney === 'USD') {
-            sum = getFirstInputValue / one_dollar
-            storage_money = 4
-        } else if (getEnterMoney === 'AMD' && getReceivedMoney === 'EUR') {
-            sum = getFirstInputValue / amd
-            storage_money = 6
-        } else if (getEnterMoney === 'AMD' && getReceivedMoney === 'AMD') {
-            sum = Number(getFirstInputValue)
-            storage_money = 0
-        }
-
-        if (getEnterMoney === 'USD' && getReceivedMoney === 'AMD') {
-            sum = one_dollar * getFirstInputValue
-            storage_money = 4
-        } else if (getEnterMoney === 'USD' && getReceivedMoney === 'EUR') {
-            sum = getFirstInputValue * one_dollar / amd
-            storage_money = 8
-        } else if (getEnterMoney === 'USD' && getReceivedMoney === 'USD') {
-            sum = Number(getFirstInputValue)
-            storage_money = 0
-        }
-
-        if (getEnterMoney === 'EUR' && getReceivedMoney === 'AMD') {
-            sum = amd * getFirstInputValue
-            storage_money = 6
-        } else if (getEnterMoney === 'EUR' && getReceivedMoney === 'USD') {
-            sum = amd / one_dollar * getFirstInputValue
-            storage_money = 8
-        } else if (getEnterMoney === 'EUR' && getReceivedMoney === 'EUR') {
-            sum = Number(getFirstInputValue)
-            storage_money = 0
-        }
-    }
 
     return (
         <div className="converter">
